@@ -18,6 +18,9 @@ class UserQsts(models.Model):
         verbose_name = u'课程咨询'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.name
+
 
 class CourseComments(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u'用户')
@@ -28,6 +31,9 @@ class CourseComments(models.Model):
     class Meta:
         verbose_name = u'课程评论'
         verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.user
 
 
 class UserStore(models.Model):
@@ -40,6 +46,9 @@ class UserStore(models.Model):
         verbose_name = u'用户收藏'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.user
+
 
 class UserMessage(models.Model):
     user = models.IntegerField(default=0, verbose_name=u'用户类型')
@@ -51,6 +60,10 @@ class UserMessage(models.Model):
         verbose_name = u'用户消息'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.message
+
+
 class UserCourse(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u'用户')
     course = models.ForeignKey(Course, verbose_name=u'课程')
@@ -59,3 +72,6 @@ class UserCourse(models.Model):
     class Meta:
         verbose_name = u'用户课程'
         verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.user
