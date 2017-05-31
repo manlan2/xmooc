@@ -1,4 +1,4 @@
 .idea/
-xmooc/settings.py
-db.sqlite3
+/xmooc/settings.py
+/db.sqlite3
 *.pyc
