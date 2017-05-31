@@ -9,6 +9,8 @@ class CityDictAdmin(object):
     list_display_links = ('id', 'name')
     search_fields = ('name', 'desc')
     list_filter = ('name', 'desc', 'add_time')
+    list_export = ('xls', 'xml', 'json')
+    list_editable = ['add_time', 'name']
 
 
 class CourseOrgAdmin(object):
