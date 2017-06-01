@@ -20,7 +20,7 @@
 		<div  class=" header">
  			<div class="top">
 				<div class="wp">
-					<div class="fl"><p>服务电话：<b>13261569713</b></p></div>
+					<div class="fl"><p>服务电话：<b>13234232242</b></p></div>
 					<!--登录后跳转-->
 
                         
@@ -41,7 +41,7 @@
 	                                </dd>
                                 </dl>
                                 <div class="btn">
-	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>
+	                                <a class="personcenter fl" href="{% url 'users:usercenter_info' %}">进入个人中心</a>
 	                                <a class="fr" href="/logout/">退出</a>
                                 </div>
                             </div>
@@ -76,16 +76,16 @@
 				<div class="nav">
 					<div class="wp">
 						<ul>
-							<li class="active" ><a href="index.html">首页</a></li>
+							<li class="active" ><a href="{% url 'users:index' %}">首页</a></li>
 							<li >
-								<a href="{% url 'courses' %}">
+								<a href="{% url 'users:courses' %}">
 									公开课<img class="hot" src="/static/img/nav_hot.png">
 								</a>
 							</li>
 							<li >
-								<a href="teachers-list.html">授课教师</a>
+								<a href="{% url 'users:teachers' %}">授课教师</a>
 							</li>
-							<li ><a href="org-list.html">授课机构</a></li>
+							<li ><a href="{% url 'users:orgs' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>
@@ -179,7 +179,7 @@
 					<div class="module1_1 left">
 						<img width="228" height="614" src="/static/img/module1_1.jpg"/>
 						<p class="fisrt_word">名师授课<br/>专业权威</p>
-						<a class="more" href="course-list.html">查看更多课程 ></a>
+						<a class="more" href="courses-list.html">查看更多课程 ></a>
 					</div>
 					<div class="right group_list">
 						<div class="module1_2 box">
@@ -319,7 +319,7 @@
 					<div class="module3_1 left">
 						<img width="228" height="463" src="/static/img/module3_1.jpg"/>
 						<p class="fisrt_word">名校来袭<br/>权威认证</p>
-						<a class="more" href="org-list.html">查看更多机构 ></a>
+						<a class="more" href="orgs-list.html">查看更多机构 ></a>
 					</div>
 					<div class="right">
 						<ul>
@@ -547,7 +547,7 @@
 				<ul class="cont">
 					<li class="logo"><a href=""><img src="/static/img/footlogo.png"/></a></li>
 					<li class="code"><img src="/static/img/code.jpg"/><p class="center">扫描关注微信</p></li>
-					<li class="third"><img class="fl" src="/static/img/tell.png"/><p class="tell">13261569713</p><p class="time">周一至周日 9:00-18:00</p></li>
+					<li class="third"><img class="fl" src="/static/img/tell.png"/><p class="tell">132423423</p><p class="time">周一至周日 9:00-18:00</p></li>
 				</ul>
 
 			</div>
