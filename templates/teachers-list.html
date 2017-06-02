@@ -59,14 +59,14 @@
 						<ul>
 							<li ><a href="{% url 'users:index' %}">首页</a></li>
 							<li >
-								<a href="{% url 'users:courses' %}">
+								<a href="{% url 'courses:courses' %}">
 									公开课<img class="hot" src="/static/img/nav_hot.png">
 								</a>
 							</li>
 							<li class="active">
-								<a href="{% url 'users:teachers' %}">授课教师</a>
+								<a href="{% url 'organizations:teachers' %}">授课教师</a>
 							</li>
-							<li ><a href="{% url 'users:orgs' %}">授课机构</a></li>
+							<li ><a href="{% url 'organizations:orgs' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>
@@ -98,7 +98,10 @@
 				</ul>
                 <div class="fr butler-num">共<span class="key">9</span>人&nbsp;&nbsp;&nbsp;</div>
 			</div>
-                
+
+
+
+                {% for teacher in teacher_lsit %}
                 <dl class="des">
 					<dt>
 						<a href="/org/teacher/detail/1/">
@@ -119,18 +122,20 @@
 					</dt>
 					<dd>
 						<a href="/org/teacher/detail/1/">
-                            <h1>bobby<span class="key picbig">金牌讲师</span></h1>
+                            <h1>{{ teacher.name }}<span class="key picbig">金牌讲师</span></h1>
                         </a>
 						<ul class="cont">
-							<li>工作年限：<span>5年</span></li>
-							<li>工作职位：<span>xxx</span></li>
-							<li>就职公司：<span>xxx&nbsp;</span></li>
-							<li>年龄：<span>18岁</span></li>
-							<li>教学特点：<span>xxx</span></li>
+							<li>工作年限：<span>{{ teacher.work_years }}</span></li>
+							<li>工作职位：<span>{{ teacher.work_position }}</span></li>
+							<li>就职公司：<span>{{ teacher.work_company }}</span></li>
+							<li>年龄：<span> 18</span></li>
+							<li>教学特点：<span>{{ teacher.points }}</span></li>
 						</ul>
 					</dd>
                     <a class="buy buyservice" href="/org/teacher/detail/1/"><br/>查看<br/>详情</a>
                 </dl>
+            {% endfor %}
+
                 
 
 
@@ -161,7 +166,9 @@
 	</div>
 	<div class="right layout">
 		<div class="head">讲师排行榜</div>
-            
+
+
+            {% for rank in teacher_rank  %}
             <dl class="des">
                 <span class="num fl">1</span>
                 <a href="/diary/hk_detail/6/">
@@ -171,26 +178,13 @@
                 </a>
                 <dd>
                     <a href="/diary/hk_detail/6/">
-                        <h1 title="bobby">bobby</h1>
+                        <h1 title="bobby">{{ rank.name }}</h1>
                     </a>
-                    <p>工作年限：<span>5年</span></p>
+                    <p>工作年限：<span>{{ rank.work_years }}</span></p>
                 </dd>
             </dl>
-            
-            <dl class="des">
-                <span class="num fl">1</span>
-                <a href="/diary/hk_detail/6/">
-                    <dt>
-                        <img width="50" height="50" class="scrollLoading"  src="/static/media/teacher/2016/11/aobama.png"/>
-                    </dt>
-                </a>
-                <dd>
-                    <a href="/diary/hk_detail/6/">
-                        <h1 title="还是bobby">还是bobby</h1>
-                    </a>
-                    <p>工作年限：<span>5年</span></p>
-                </dd>
-            </dl>
+            {% endfor %}
+
             
 
 	</div>

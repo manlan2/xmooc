@@ -15,17 +15,6 @@ def userlogin(request):
 def register(request):
     return render(request, 'register.html', {})
 
-def courses(request):
-    return render(request, 'courses-list.html', {})
-
-
-def teachers(request):
-    return render(request, 'teachers-list.html', {})
-
-
-def orgs(request):
-    return render(request, 'orgs-list.html', {})
-
 
 def usercenter_info(request):
     return render(request, 'usercenter-info.html')
