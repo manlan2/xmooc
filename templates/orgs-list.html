@@ -111,7 +111,7 @@
 					<div class="cont">
                         <a href="?ct="><span class="active2">全部</span></a>
 
-                            {% for city in city_list %}
+                            {% for city in all_cities %}
                                 <a href="?city=1&ct="><span class="">{{ city.name }}</span></a>
                             {% endfor %}
 
@@ -131,11 +131,11 @@
 			</div>
 
 
-                {% for org in org_list %}
+                {% for org in all_orgs.object_list %}
                 <dl class="des difdes">
                     <dt>
                         <a href="">
-                            <img width="200" height="120" class="scrollLoading" data-url="/static/media/org/2016/11/imooc.png"/>
+                            <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ org.image }}"/>
                         </a>
                     </dt>
                     <dd>
@@ -170,30 +170,23 @@
 		</div>
 		 <div class="pageturn">
             <ul class="pagelist">
-                
-
-                
-                    
-                        
-                            <li class="active"><a href="?page=1">1</a></li>
-                        
-                    
-                
-                    
-                        
-                            <li><a href="?page=2" class="page">2</a></li>
-                        
-                    
-                
-                    
-                        
-                            <li><a href="?page=3" class="page">3</a></li>
-                        
-                    
-                
-                
-                    <li class="long"><a href="?page=2">下一页</a></li>
-                
+                {% if all_orgs.has_previous %}
+                    <li class="long"><a href="?{{ all_orgs.previous_page_number.querystring }}">上一页</a></li>
+                {% endif %}
+            {% for page in all_orgs.pages %}
+                {% if page %}
+                    {% ifequal page all_orgs.number %}
+                        <li class="active"><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li><a href="" class="none">...</a></li>
+                {% endif %}
+            {% endfor %}
+             {% if all_orgs.has_next %}
+                 <li class="active long"><a href="?{{ all_orgs.next_page_number.querystring }}">下一页</a></li>
+            {% endif %}
 
             </ul>
         </div>

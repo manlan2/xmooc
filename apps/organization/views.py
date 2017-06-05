@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from organization import models
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -11,8 +12,19 @@ def teachers(request):
 
 
 def orgs(request):
-    org_list = models.CourseOrg.objects.all()
-    city_list = models.CityDict.objects.all()
-    return render(request, 'orgs-list.html', {'org_list':org_list,'city_list':city_list})
+    all_orgs = models.CourseOrg.objects.all()
+    try:
+        page = request.GET.get('page', 1)
+    except PageNotAnInteger:
+        page = 1
+
+    # Provide Paginator with the request object for complete querystring generation
+
+    p = Paginator(all_orgs, 1, request=request)
+
+    orgs = p.page(page)
+
+    all_cities = models.CityDict.objects.all()
+    return render(request, 'orgs-list.html', {'all_orgs':orgs,'all_cities':all_cities})
 
 
