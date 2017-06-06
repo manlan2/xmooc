@@ -39,12 +39,22 @@ def courses(request):
 				
 def course_detail(request, course_id):
 	course = models.Course.objects.get(pk=course_id)
+
+	course.click_nums += 1
+	course.save()
+
 	all_lessons = models.Lesson.objects.filter(course_id=course_id)
 	lesson_nums = all_lessons.count()
 	return render(request, 'course-detail.html', {'course':course,'lesson_nums':lesson_nums})
 	
 	
 def lesson(request, course_id):
+	course = models.Course.objects.get(pk=course_id)
 	all_lessons = models.Lesson.objects.filter(course_id=course_id)
-	return render(request, 'course-video.html', {})
+	all_resources = models.CourseResource.objects.filter(course_id=course_id)
+	return render(request, 'course-video.html', {
+		'course':course,
+		'all_lessons':all_lessons,
+		'all_resources':all_resources,
+	})
 	

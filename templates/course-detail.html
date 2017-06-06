@@ -125,24 +125,24 @@
 						<h1 title="{{ course.name }}">{{ course.name }}</h1>
 						<span class="key">{{ course.desc }}</span>
 						<div class="prize">
-							<span class="fl">难度：<i class="key">高级</i></span>
+							<span class="fl">难度：<i class="key">{{ course.get_degree_display }}</i></span>
 							<span class="fr">学习人数：{{ course.students }}</span>
 						</div>
 						<ul class="parameter">
 							<li><span class="pram word3">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><span>{{ course.learn_times }}分钟</span></li>
-                            <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{ lesson_nums }}</span></li>
-                            <li><span class="pram word3">课程类别：</span><span title="">web开发/后端开发</span></li>
+                            <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{ course.get_lesson_nums }}</span></li>
+                            <li><span class="pram word3">课程类别：</span><span title="">{{ course.category }}</span></li>
 							<li class="piclist"><span class="pram word4">学习用户：</span>
-                                
-                                    <span class="pic"><img width="40" height="40" src="/static/media/image/2016/12/default_big_14.png"/></span>
-                                
+                                {% for usercourse in course.get_learn_users %}
+                                <span class="pic"><img width="40" height="40" src="{{ MEDIA_URL }}{{ usercourse.user.image }}"/></span>
+                                {% endfor %}
 							</li>
 						</ul>
 						<div class="btns">
 							<div class="btn colectgroupbtn"  id="jsLeftBtn">
                                   收藏
                             </div>
-                                <div class="buy btn"><a style="color: white" href="course-video.html">开始学习</a></div>
+                                <div class="buy btn"><a style="color: white" href="{% url 'courses:lesson' course.id %}">开始学习</a></div>
 						</div>
 					</div>
                     <div class="group-share-box">
