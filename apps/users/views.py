@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from users import models
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html', {})
+	banner_list = models.Banner.objects.all()[:5]
+	return render(request, 'index.html', {
+					'banner_list':banner_list,
+					})
 
 
 def userlogin(request):
