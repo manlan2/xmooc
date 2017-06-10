@@ -76,4 +76,8 @@ def orgs(request):
 				'org_rank':org_rank,
 				})
 
+def home(request, org_id):
+	org = models.CourseOrg.objects.get(pk=org_id)
+	return render(request, 'org-home.html', {'org':org})
+
 

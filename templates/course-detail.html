@@ -77,16 +77,16 @@
 				<div class="nav">
 					<div class="wp">
 						<ul>
-							<li ><a href="index.html">首页</a></li>
+							<li ><a href="{% url 'users:index' %}">首页</a></li>
 							<li class="active">
-								<a href="course-list.html">
+								<a href="{% url 'courses:courses' %}">
 									公开课<img class="hot" src="/static/img/nav_hot.png">
 								</a>
 							</li>
 							<li >
-								<a href="teachers-list.html">授课教师</a>
+								<a href="{% url 'organizations:teachers' %}">授课教师</a>
 							</li>
-							<li ><a href="org-list.html">授课机构</a></li>
+							<li ><a href="{% url 'organizations:orgs' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>
@@ -210,68 +210,70 @@
 				<div class="tab_cont tab_cont1">
                     
 					<p>&nbsp; &nbsp; {{ course.detail }}</p>
-					<table>
-						<tbody>
-							<tr class="firstRow">
-								<td style="word-break: break-all;" width="53" valign="top">课程</td>
-								<td style="word-break: break-all;" width="53" valign="top">课时<br/> 
-								</td><td style="word-break: break-all;" width="53" valign="top">难度<br/> 
-								</td><td style="word-break: break-all;" width="53" valign="top">时长<br/> 
-								</td><td style="word-break: break-all;" width="53" valign="top">学习人数<br/> 
-								</td><td style="word-break: break-all;" width="53" valign="top">点击数<br/> 
-								</td><td style="word-break: break-all;" width="53" valign="top">点击数</td>
-								<td style="word-break: break-all;" width="53" valign="top">点击数</td>
-							</tr>
-							<tr>
-								<td style="word-break: break-all;" width="53" valign="top">django开发<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">20<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">中级<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">30<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>
-								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>
-							</tr>
-							<tr>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-							</tr>
-							<tr>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-							</tr>
-							<tr>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								</tr><tr><td width="53" valign="top"><br/> 
-								</td><td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-								<td width="53" valign="top"><br/> </td>
-							</tr>
-						</tbody>
-						</table><p><br/> 
+{#					<table>#}
+{#						<tbody>#}
+{#							<tr class="firstRow">#}
+{#								<td style="word-break: break-all;" width="53" valign="top">课程</td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">课时<br/> #}
+{#								</td><td style="word-break: break-all;" width="53" valign="top">难度<br/> #}
+{#								</td><td style="word-break: break-all;" width="53" valign="top">时长<br/> #}
+{#								</td><td style="word-break: break-all;" width="53" valign="top">学习人数<br/> #}
+{#								</td><td style="word-break: break-all;" width="53" valign="top">点击数<br/> #}
+{#								</td><td style="word-break: break-all;" width="53" valign="top">点击数</td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">点击数</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">django开发<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">20<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">中级<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">30<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>#}
+{#								<td style="word-break: break-all;" width="53" valign="top">100000<br/> </td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								</tr><tr><td width="53" valign="top"><br/> #}
+{#								</td><td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#								<td width="53" valign="top"><br/> </td>#}
+{#							</tr>#}
+{#						</tbody>#}
+{#						</table>#}
+
+                    <br/>
 						</p><p>
 						<img src="http://img.baidu.com/hi/jx2/j_0025.gif"/> </p>
                     

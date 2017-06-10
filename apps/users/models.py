@@ -20,8 +20,8 @@ class UserProfile(AbstractUser):
         verbose_name = u'用户信息'
         verbose_name_plural = verbose_name
 
-    def __str__(self):
-        return self.username
+    def __unicode__(self):
+        return self.nick_name
 
 
 class EmailVerifyRecord(models.Model):

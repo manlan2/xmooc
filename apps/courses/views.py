@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from courses import models
+#from operation import models
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -53,8 +54,9 @@ def lesson(request, course_id):
 	all_lessons = models.Lesson.objects.filter(course_id=course_id)
 	all_resources = models.CourseResource.objects.filter(course_id=course_id)
 	return render(request, 'course-video.html', {
-		'course':course,
-		'all_lessons':all_lessons,
-		'all_resources':all_resources,
+		'course': course,
+		'all_lessons': all_lessons,
+		'all_resources': all_resources,
 	})
-	
+
+
