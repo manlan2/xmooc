@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from users.models import UserProfile, EmailVerifyRecord, Banner
 from operation.models import UserCourse
+from courses.models import Course
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.backends import ModelBackend
@@ -38,9 +39,9 @@ class LoginView(View):
                 login(request, user)
                 return render(request, 'index.html')
             else:
-                return render(request, 'login.html', {'msg': '用户名或密码错误！'})
+                return render(request, 'login.html', {'msg': u'用户名或密码错误！'})
         else:
-            return render(request, 'login.html', {'msg': '用户名或密码错误！'})
+            return render(request, 'login.html', {'login_form':login_form})
 
 
 class RegisterView(View):
@@ -60,12 +61,18 @@ class RegisterView(View):
             return render(request, 'login.html')
         else:
 
-            return render(request, 'register.html', {'register_form':register_form, 'msg':'输入有误！'})
+            return render(request, 'register.html', {'register_form':register_form, 'msg':u'输入有误！'})
 
 
 def index(request):
     banner_list = Banner.objects.all()[:5]
-    return render(request, 'index.html', {'banner_list':banner_list,})
+    course_big = Course.objects.order_by('click_nums')[:2]
+    course_small = Course.objects.order_by('click_nums')[2:6]
+    return render(request, 'index.html', {
+        'banner_list':banner_list,
+        'course_big':course_big,
+        'course_small':course_small,
+    })
 
 
 def usercenter_info(request, user_id):
@@ -76,7 +83,10 @@ def usercenter_info(request, user_id):
 def usercenter_mycourse(request, user_id):
     user_course = UserCourse.objects.filter(user_id=user_id)
     users_id = user_id
-    return render(request, 'usercenter-mycourse.html', {'user_course':user_course,'id':users_id})
+    return render(request, 'usercenter-mycourse.html', {
+        'user_course':user_course,
+        'id':users_id
+    })
 
 
 def usercenter_mystore(request, user_id):

@@ -86,6 +86,10 @@ def detail(request, teacher_id):
     teacher_dateil = Teacher.objects.get(pk=teacher_id)
     all_courses = Course.objects.filter(teacher=teacher_dateil)
     teacher_rank = Teacher.objects.order_by('click_nums')[:3]
-    return render(request, 'teacher-detail.html', {'teacher_dateil':teacher_dateil, 'teacher_rank':teacher_rank, 'all_courses':all_courses})
+    return render(request, 'teacher-detail.html', {
+        'teacher_dateil':teacher_dateil,
+        'teacher_rank':teacher_rank,
+        'all_courses':all_courses
+    })
 
 

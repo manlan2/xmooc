@@ -5,14 +5,14 @@
 	<meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-	<title>机构首页</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/js/plugins/queryCity/css/cityLayout.css">
+	<title>机构介绍</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../js/plugins/queryCity/css/cityLayout.css">
     
-    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
     
 </head>
 <body>
@@ -33,12 +33,12 @@
             
     <div class="middle companyheader">
         <div class="wp">
-            <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ org.image }}"/>
+            <img class="fl" style="width: 112px;height: 103px" src="../media/org/2016/11/imooc.png"/>
             <div class="head fl">
                 <h1>
-                    {{ org.name }}
-                    <img src="/static/img/authentication.png"/>
-                    <img src="/static/img/gold.png"/>
+                    慕课网
+                    <img src="../images/authentication.png"/>
+                    <img src="../images/gold.png"/>
                 </h1>
                 <p class="fl">
                     <span class="fl" style="margin-top:8px;color:#848484;">推荐指数： </span>
@@ -61,7 +61,7 @@
 		<ul  class="crumbs">
             <li><a href="index.html">首页</a>></li>
 			<li><a href="org-list.html">课程机构</a>></li>
-			<li>机构首页</li>
+			<li>机构介绍</li>
 		</ul>
 	</div>
 </section>
@@ -70,84 +70,23 @@
 	<div class="wp list personal_list comp">
 		<div class="left">
 			<ul>
-				<li class="active2"><a href="{% url 'organizations:home' org.id %}">机构首页</a></li>
+				<li class=""><a href="org-detail-homepage.html">机构首页</a></li>
                 <li class=""><a href="org-course.html">机构课程</a></li>
-                <li class=""><a href="org-desc.html">机构介绍</a></li>
+                <li class="active2"><a href="org-desc.html">机构介绍</a></li>
                 <li class=""><a href="org-teachers.html">机构讲师</a></li>
 			</ul>
 		</div>
     
-<div class="right companycenter layout grouping" >
-		<div class="head">
-			<h1>全部课程</h1>
-			<a class="green fr more" href="org-course.html">查看更多  >  </a>
-		</div>
-		<div class="brief group_list">
-
-            {% for course in org.get_all_courses %}
-                <div class="module1_5 box">
-                    <a href="{% url 'courses:course_detail' course.id %}"><img width="214" src="{{ MEDIA_URL }}{{ course.image }}"/></a>
-                    <div class="des">
-                        <a href="{% url 'courses:course_detail' course.id %}"><h2>{{ course.name }}</h2></a>
-                        <span class="fl">课时：<i class="key">{{ course.learn_times }}分</i></span>
-                        <span class="fr">参加人数：{{ course.students }}</span>
-                    </div>
-                    <div class="bottom">
-                        <span class="fl">{{ course.course_org.name }}</span>
-                         <span class="star fr  notlogin
-                            " data-favid="13"  data-fav-type="4">
-                            {{ course.fav_nums }}
-                        </span>
-                    </div>
-                </div>
-            {% endfor %}
-
-		</div>
-	</div>
 <div class="right companycenter layout" >
-    <div class="head">
-        <h1>机构教师</h1>
-        <a class="green fr more" href="org-teachers.html">查看更多  >  </a>
-    </div>
-
-    <div class="diarys">
-        {% for teacher in org.get_all_teachers %}
-        <div class="module5 share company-diary-box" style="padding:10px 0;">
-            <div class="left">
-                <a href="{% url 'organizations:detail' teacher.id %}"> <img class="pic" src="{{ MEDIA_URL }}{{ teacher.image }}"/></a>
-                <a href="{% url 'organizations:detail' teacher.id %}"><p>昵称：{{ teacher.name }}</p></a>
-            </div>
-
-            {% for course in teacher.get_all_courses %}
-            <div class="right">
-                <div class="top">
-                    <div class="fl">
-                        <a href="{% url 'courses:course_detail' course.id %}"><h1>{{ course.name }}</h1></a>
-                        <span>发表于：{{ course.add_time }}</span>
-                    </div>
-                </div>
-                <div class="middle" style="border-bottom:0;">课程介绍:
-                <p>{{ course.desc }}</p>
-                </div>
-            </div>
-            {% endfor %}
-
+        <div class="head">
+            <h1>机构介绍</h1>
         </div>
-        {% endfor %}
+        <div class="des">
+            
+            <p><p>&nbsp; &nbsp;</p><h1 class="ue_t" label="Title center" name="tc" style="border-bottom-color:#cccccc;border-bottom-width:2px;border-bottom-style:solid;padding:0px 4px 0px 0px;text-align:center;margin:0px 0px 20px;"><span style="color:#c0504d;">[键入文档标题]</span></h1><p style="text-align:center;"><strong class="ue_t">[键入文档副标题]</strong></p><h3><span class="ue_t" style="font-family:幼圆">[标题 1]</span></h3><p class="ue_t" style="text-indent:2em;">对于“插入”选项卡上的库，在设计时都充分考虑了其中的项与文档整体外观的协调性。 您可以使用这些库来插入表格、页眉、页脚、列表、封面以及其他文档构建基块。 您创建的图片、图表或关系图也将与当前的文档外观协调一致。</p><p class="ue_t" style="text-indent:2em;"><img src="../media/courses/ueditor/57aa86a0000145c512000460_20161210234050_865.jpg" title="" alt="57aa86a0000145c512000460.jpg"/> </p><h3><span class="ue_t" style="font-family:幼圆">[标题 2]</span></h3><p><img src="http://api.map.baidu.com/staticimage?center=116.410899,39.863624&zoom=11&width=530&height=340&markers=116.404,39.915" width="530" height="340"/> </p><p class="ue_t" style="text-indent:2em;">在“开始”选项卡上，通过从快速样式库中为所选文本选择一种外观，您可以方便地更改文档中所选文本的格式。 您还可以使用“开始”选项卡上的其他控件来直接设置文本格式。大多数控件都允许您选择是使用当前主题外观，还是使用某种直接指定的格式。</p><h3><span class="ue_t" style="font-family:幼圆">[标题 3]</span></h3><p>2016-12-10</p><p class="ue_t">对于“插入”选项卡上的库，在设计时都充分考虑了其中的项与文档整体外观的协调性。 您可以使用这些库来插入表格、页眉、页脚、列表、封面以及其他文档构建基块。 您创建的图片、图表或关系图也将与当前的文档外观协调一致。</p><p class="ue_t"><br/> </p><p><br/></p><p><br/></p></p>
+            
+        </div>
     </div>
-    
-
-
-</div>
-<div class="right companycenter layout" >
-    <div class="head">
-        <h1>机构介绍</h1>
-        <a class="green fr more" href="org-desc.html">查看更多  >  </a>
-    </div>
-    <div class="cont">
-        {{ org.desc }}
-    </div>
-</div>
 
 
 </section>
@@ -164,12 +103,12 @@
 <!--header start-->
 </div>
 <!--弹出省省市-->
-<script src="/static/js/selectUi.js" type='text/javascript'></script>
-<script type="text/javascript" src="/static/js/plugins/laydate/laydate.js"></script>
-<script src="/static/js/plugins/layer/layer.js"></script>
-<script src="/static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../js/selectUi.js" type='text/javascript'></script>
+<script type="text/javascript" src="../js/plugins/laydate/laydate.js"></script>
+<script src="../js/plugins/layer/layer.js"></script>
+<script src="../js/plugins/queryCity/js/public.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="/static/js/plugins/jquery.raty.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.raty.js"></script>
 <script type="text/javascript">
     //收藏分享
 //收藏分享
@@ -207,7 +146,7 @@ $(function(){
         score = $precision.attr('data-star-scope'),
         option =  {
                     half		: true,
-                    path		: '/static/img/',
+                    path		: '../images/',
                     precision	: true,
                     size		: 24,
                     starOff		: 'g_star.png',

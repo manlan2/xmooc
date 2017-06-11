@@ -80,7 +80,7 @@
     <section>
         <div class="wp">
             <ul  class="crumbs">
-                <li><a href="index.html">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li>课程讲师</li>
             </ul>
         </div>
@@ -128,7 +128,7 @@
 							<li>工作年限：<span>{{ teacher.work_years }}</span></li>
 							<li>工作职位：<span>{{ teacher.work_position }}</span></li>
 							<li>就职公司：<span>{{ teacher.work_company }}</span></li>
-							<li>年龄：<span> 18</span></li>
+							<li>年龄：<span> {{ teacher.age }}</span></li>
 							<li>教学特点：<span>{{ teacher.points }}</span></li>
 						</ul>
 					</dd>
