@@ -31,15 +31,15 @@
                         
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>bobby<img class="down fr" src="/static/img/top_down.png"/></dd>
+                                <dd>{{ user.username }}<img class="down fr" src="/static/img/top_down.png"/></dd>
                                 <dt><img width="20" height="20" src="/static/media/image/2016/12/default_big_14.png"/></dt>
                             </dl>
                             <div class="userdetail">
                             	<dl>
 	                                <dt><img width="80" height="80" src="/static/media/image/2016/12/default_big_14.png"/></dt>
 	                                <dd>
-	                                    <h2>django</h2>
-	                                    <p>bobby</p>
+	                                    <h2>{{ user.username }}</h2>
+	                                    <p>{{ user.email }}</p>
 	                                </dd>
                                 </dl>
                                 <div class="btn">
@@ -84,11 +84,11 @@
 	<div class="wp list personal_list">
 	<div class="left">
         <ul>
-            <li class="active2"><a href="{% url 'users:usercenter_info' %}">个人资料</a></li>
-            <li ><a href="{% url 'users:usercenter_mycourse' %}">我的课程</a></li>
-            <li ><a href="{% url 'users:usercenter_mystore' %}">我的收藏</a></li>
+            <li class="active2"><a href="{% url 'users:usercenter_info' user.id %}">个人资料</a></li>
+            <li ><a href="{% url 'users:usercenter_mycourse' user.id %}">我的课程</a></li>
+            <li ><a href="{% url 'users:usercenter_mystore' user.id %}">我的收藏</a></li>
             <li >
-                <a href="{% url 'users:usercenter_mymessage' %}" style="position: relative;">
+                <a href="{% url 'users:usercenter_mymessage' user.id %}" style="position: relative;">
                     我的消息
                 </a>
             </li>
@@ -123,26 +123,26 @@
 				<form class="perinform" id="jsEditUserForm" autocomplete="off">
 					<ul class="right">
 						<li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
-                           <input type="text" name="nick_name" id="nick_name" value="django" maxlength="10">
+                           <input type="text" name="nick_name" id="nick_name" value="{{ user.nick_name }}" maxlength="10">
                             <i class="error-tips"></i>
                         </li>
 						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
-                           <input type="text" id="birth_day" name="birday" value="2009年9月2日" readonly="readonly"/>
+                           <input type="text" id="birth_day" name="birday" value="{% if user.birday == None %}{% else %}{{ user.birday }}{% endif %}" readonly="readonly"/>
                             <i class="error-tips"></i>
 						</li>
 						<li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" >男</label>
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" checked="checked">女</label>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" {% if user.gender == 'male' %}checked="checked"{% endif %}>男</label>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" {% if user.gender == 'female' %}checked="checked"{% endif %}>女</label>
 						</li>
 						<li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-                            <input type="text" name="address" id="address" placeholder="请输入你的地址" value="我来自火星" maxlength="10">
+                            <input type="text" name="address" id="address" placeholder="请输入你的地址" value="{{ user.address }}" maxlength="10">
 						    <i class="error-tips"></i>
                         </li>
 						<li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
                             <input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号码" value="" maxlength="10">
                         </li>
                         <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
-                        	<input class="borderno" type="text" name="email" readonly="readonly" value="projectsedu@sina.com"/>
+                        	<input class="borderno" type="text" name="email" readonly="readonly" value="{{ user.email }}"/>
                             <span class="green changeemai_btn">[修改]</span>
                     	</li>
 						<li class="button heibtn">

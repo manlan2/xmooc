@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from organization import models
+from organization.models import CityDict, CourseOrg, Teacher
+from courses.models import Course
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
 def teachers(request):
     
-	all_teachers = models.Teacher.objects.all()
+	all_teachers = Teacher.objects.all()
 	teacher_count = all_teachers.count()
 	sort = request.GET.get('sort', '')
 	
@@ -23,7 +24,7 @@ def teachers(request):
 	
 	teachers = p.page(page)
 	
-	teacher_rank = models.Teacher.objects.order_by('-fav_nums')
+	teacher_rank = Teacher.objects.order_by('-fav_nums')
 	return render(request, 'teachers-list.html', {
 				'all_teachers':teachers,
 				'teacher_count':teacher_count,
@@ -34,8 +35,8 @@ def teachers(request):
 
 def orgs(request):
 
-	all_orgs = models.CourseOrg.objects.all()
-	org_rank = models.CourseOrg.objects.order_by('click_nums')[0:3]
+	all_orgs = CourseOrg.objects.all()
+	org_rank = CourseOrg.objects.order_by('click_nums')[0:3]
 	
 	city_id = request.GET.get('city', '')
 	category = request.GET.get('ct', '')
@@ -65,7 +66,7 @@ def orgs(request):
 
 	orgs = p.page(page)
 
-	all_cities = models.CityDict.objects.all()
+	all_cities = CityDict.objects.all()
 	return render(request, 'orgs-list.html', {
 				'all_orgs':orgs,
 				'all_cities':all_cities,
@@ -77,7 +78,14 @@ def orgs(request):
 				})
 
 def home(request, org_id):
-	org = models.CourseOrg.objects.get(pk=org_id)
+	org = CourseOrg.objects.get(pk=org_id)
 	return render(request, 'org-home.html', {'org':org})
+
+
+def detail(request, teacher_id):
+    teacher_dateil = Teacher.objects.get(pk=teacher_id)
+    all_courses = Course.objects.filter(teacher=teacher_dateil)
+    teacher_rank = Teacher.objects.order_by('click_nums')[:3]
+    return render(request, 'teacher-detail.html', {'teacher_dateil':teacher_dateil, 'teacher_rank':teacher_rank, 'all_courses':all_courses})
 
 
