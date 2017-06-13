@@ -42,7 +42,7 @@
                                 <h1>{{ teacher_dateil.name }}<span class="key picbig">金牌讲师</span></h1>
                             </a>
                             <ul class="cont">
-                                <li>工作年限：<span>{{ teacher_dateil.work_years }}</span></li>
+                                <li>工作年限：<span>{{ teacher_dateil.work_years }}年</span></li>
                                 <li>就职公司：<span>{{ teacher_dateil.work_company }}</span></li>
                                 <li>工作职位：<span>{{ teacher_dateil.work_position }}&nbsp;</span></li>
                                 <li>教学特点：<span>{{ teacher_dateil.points }}</span></li>
@@ -72,8 +72,8 @@
                                     <span class="fr">学习人数：{{ course.students }}</span>
                                 </div>
                                 <div class="bottom">
-                                    <span class="fl">{{ teacher_dateil.org.name }}</span>
-                                    <span class="star fr  notlogin" data-favid="15">{{ course.fav_nums }}</span>
+                                    <a href="{% url 'organizations:home' teacher_dateil.org.id %}"> <span class="fl">{{ teacher_dateil.org.name }}</span></a>
+                                    <span class="star fr  notlogin" data-favid="15">★{{ course.fav_nums }}</span>
                                 </div>
                             </div>
                             {% endfor %}

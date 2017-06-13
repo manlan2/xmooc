@@ -40,9 +40,9 @@
                                     <span class="fr">学习人数：{{ course.students }}&nbsp;&nbsp;</span>
                                 </div>
                                 <div class="bottom">
-                                    <a href="{% url 'courses:course_detail' course.id %}"><span class="fl">来自</span></a>
+                                    <a href="{% url 'organizations:home' course.course_org.id %}"><span class="fl">来自: {{ course.course_org.name }}</span></a>
                                     <span class="star fr  notlogin
-                                        " data-favid="15">
+                                        " data-favid="15"><strong>★</strong>
                                         {{ course.click_nums }}
                                     </span>
                                 </div>
@@ -85,12 +85,12 @@
                     {% for hot in coure_hot %}
                     <dl>
 						<dt>
-							<a target="_blank" href="">
+							<a  href="{% url 'courses:course_detail' hot.id %}">
 								<img width="240" height="220" class="scrollLoading" src="{{ MEDIA_URL }}{{ hot.image }}"/>
 							</a>
 						</dt>
 						<dd>
-							<a target="_blank" href=""><h2> {{ hot.name }}</h2></a>
+							<a  href="{% url 'courses:course_detail' hot.id %}"><h2> {{ hot.name }}</h2></a>
 
 							<span class="fl">难度：<i class="key">{{ hot.get_degree_display }}</i></span>
 

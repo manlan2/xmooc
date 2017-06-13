@@ -24,13 +24,13 @@
                     </dt>
                     <dd>
                         <h1>
-                            <a href="">
-                            {{ teacher.name }}<span class="key">已认证</span>
+                            <a href="{% url 'organizations:detail' teacher.id %}">
+                            {{ teacher.name }}<span class="key"><img src="/static/img/authentication.png"/>已认证</span>
                             </a>
                         </h1>
                         <ul class="cont clearfix">
-                            <li class="time">工作年限：<span>{{ teacher.work_years }}</span></li>
-                            <li class="c7">课程数：<span>{{ teacher.get_courses_nums }}</span></li>
+                            <li class="time">工作年限：<span>{{ teacher.work_years }}年</span></li>
+                            <li class="c7">课程数：<span>{{ teacher.get_courses_nums }}门</span></li>
                         </ul>
                     </dd>
                 </dl>
