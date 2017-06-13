@@ -80,8 +80,23 @@ def orgs(request):
 def home(request, org_id):
 	org = CourseOrg.objects.get(pk=org_id)
 	return render(request, 'org-home.html', {'org':org})
+	
+	
+def org_courses(request, org_id):
+	org = CourseOrg.objects.get(pk=org_id)
+	return render(request, 'org-courses.html', {'org':org})
 
 
+def org_teachers(request, org_id):
+	org = CourseOrg.objects.get(pk=org_id)
+	return render(request, 'org-teachers.html', {'org':org})
+
+
+def org_desc(request, org_id):
+	org = CourseOrg.objects.get(pk=org_id)
+	return render(request, 'org-desc.html', {'org':org})
+
+	
 def detail(request, teacher_id):
     teacher_dateil = Teacher.objects.get(pk=teacher_id)
     all_courses = Course.objects.filter(teacher=teacher_dateil)

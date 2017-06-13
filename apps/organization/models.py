@@ -72,3 +72,6 @@ class Teacher(models.Model):
 
     def get_all_courses(self):
         return self.course_set.all()
+		
+	def get_courses_nums(self):
+		return self.course_set.all().count()
