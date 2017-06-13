@@ -1,0 +1,18 @@
+<nav>
+	<div class="nav">
+		<div class="wp">
+			<ul>
+				<li class="active" ><a href="{% url 'users:index' %}">首页</a></li>
+				<li >
+					<a href="{% url 'courses:courses' %}">
+						公开课<img class="hot" src="/static/img/nav_hot.png">
+					</a>
+				</li>
+				<li >
+					<a href="{% url 'organizations:teachers' %}">授课教师</a>
+				</li>
+				<li ><a href="{% url 'organizations:orgs' %}">授课机构</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

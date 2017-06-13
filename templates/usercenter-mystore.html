@@ -84,11 +84,11 @@
 	<div class="wp list personal_list">
 	<div class="left">
         <ul>
-            <li class="active2"><a href="{% url 'users:usercenter_info' %}">个人资料</a></li>
-            <li ><a href="{% url 'users:usercenter_mycourse' %}">我的课程</a></li>
-            <li ><a href="{% url 'users:usercenter_mystore' %}">我的收藏</a></li>
+            <li ><a href="{% url 'users:usercenter_info' user_id %}">个人资料</a></li>
+            <li ><a href="{% url 'users:usercenter_mycourse' user_id %}">我的课程</a></li>
+            <li class="active2"><a href="{% url 'users:usercenter_mystore' user_id %}">我的收藏</a></li>
             <li >
-                <a href="{% url 'users:usercenter_mymessage' %}" style="position: relative;">
+                <a href="{% url 'users:usercenter_mymessage' user_id %}" style="position: relative;">
                     我的消息
                 </a>
             </li>

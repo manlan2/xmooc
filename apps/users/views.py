@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from users.models import UserProfile, EmailVerifyRecord, Banner
-from operation.models import UserCourse
+from operation.models import UserCourse, UserStore, UserMessage
 from courses.models import Course
 from django.contrib.auth import authenticate, login
 
@@ -90,8 +90,21 @@ def usercenter_mycourse(request, user_id):
 
 
 def usercenter_mystore(request, user_id):
-    return render(request, 'usercenter-mystore.html')
+    courses_store = UserStore.objects.filter(user_id=user_id).filter(store_type=1)
+    orgs_store = UserStore.objects.filter(user_id=user_id).filter(store_type=2)
+    teachers_store = UserStore.objects.filter(user_id=user_id).filter(store_type=3)
+    return render(request, 'usercenter-mystore.html', {'user_id':user_id})
 
 
 def usercenter_mymessage(request, user_id):
-    return render(request, 'usercenter-mymessage.html')
+    messages = UserMessage.objects.filter(user=user_id)
+    return render(request, 'usercenter-mymessage.html', {'user_id':user_id})
+	
+	
+def userinfo_save(request, user_id):
+    nick_name = request.POST.get('nick_name', '')
+    birthday = request.POST.get('birthday', '')
+    gender = request.POST.get('gender', '')
+    address = request.POST.get('address', '')
+    mobile = request.POST.get('mobile', '')
+	
