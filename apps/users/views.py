@@ -108,3 +108,5 @@ def userinfo_save(request, user_id):
     address = request.POST.get('address', '')
     mobile = request.POST.get('mobile', '')
 	
+	
+	

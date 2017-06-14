@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from courses.models import Course, Lesson, Video, CourseResource
+from operation.models import UserCourse
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
@@ -57,6 +58,20 @@ def course_detail(request, course_id):
 
 
 def lesson(request, course_id):
+
+    user_course = UserCourse()
+	
+	#我的课程添加
+    course_ids = ''
+	
+    for all_courses_ids in UserCourse.objects.filter(user_id=request.user.id):
+        course_ids += str(all_courses_ids.course_id)
+	
+    if course_id not in course_ids:
+        user_course.user_id = request.user.id
+        user_course.course_id = course_id
+        user_course.save()
+	
     course = Course.objects.get(pk=course_id)
     all_lessons = Lesson.objects.filter(course_id=course_id)
     all_resources = CourseResource.objects.filter(course_id=course_id)

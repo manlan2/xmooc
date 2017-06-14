@@ -222,11 +222,11 @@ function add_fav(current_elem, fav_id, fav_type){
     $.ajax({
         cache: false,
         type: "POST",
-        url:"/org/add_fav/",
+        url:"/addstore/",
         data:{'fav_id':fav_id, 'fav_type':fav_type},
         async: true,
         beforeSend:function(xhr, settings){
-            xhr.setRequestHeader("X-CSRFToken", "5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy");
+            xhr.setRequestHeader("X-CSRFToken", "{% csrf_token %}");
         },
         success: function(data) {
             if(data.status == 'fail'){
@@ -244,11 +244,11 @@ function add_fav(current_elem, fav_id, fav_type){
 }
 
 $('#jsLeftBtn').on('click', function(){
-    add_fav($(this), 10, 1);
+    add_fav($(this), {{ course.id }}, 1);
 });
 
 $('#jsRightBtn').on('click', function(){
-    add_fav($(this), 2, 2);
+    add_fav($(this), {{ course.course_org.id }}, 2);
 });
 
 
