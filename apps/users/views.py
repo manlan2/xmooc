@@ -14,6 +14,7 @@ from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
+
 class CustomBackend(ModelBackend):
     def authenticate(self, username=None, password=None, **kwargs):
         try:
@@ -27,6 +28,7 @@ class CustomBackend(ModelBackend):
 class LoginView(View):
     def get(self, request):
         return render(request, 'login.html', {})
+
     def post(self, request):
 
         login_form = LoginForm(request.POST)
@@ -48,6 +50,7 @@ class RegisterView(View):
     def get(self, request):
         register_form = RegisterForm()
         return render(request, 'register.html', {'register_form':register_form})
+
     def post(self,request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():

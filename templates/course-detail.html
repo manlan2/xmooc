@@ -194,19 +194,19 @@
 			<div class="right layout">
 				<div class="head">相关课程推荐</div>
                 <div class="group_recommend">
-                    
+                    {% for course in relate_courses %}
                         <dl>
                             <dt>
-                                <a target="_blank" href="">
-                                    <img width="240" height="220" class="scrollLoading" src="/static/media/courses/2016/11/540e57300001d6d906000338-240-135_mvvGYHL.jpg"/>
+                                <a  href="{% url 'courses:course_detail' course.id %}">
+                                    <img width="240" height="220" class="scrollLoading" src="{{ MEDIA_URL }}{{ course.image }}"/>
                                 </a>
                             </dt>
                             <dd>
-                                <a target="_blank" href=""><h2> django实战项目</h2></a>
-                                <span class="fl">学习时长：<i class="key">0</i></span>
+                                <a target="_blank" href=""><h2> {{ course.name }}</h2></a>
+                                <span class="fl">学习时长：<i class="key">{{ course.learn_times }}分钟</i></span>
                             </dd>
                         </dl>
-                    
+                    {% endfor %}
 
 
                 </div>
@@ -226,7 +226,7 @@ function add_fav(current_elem, fav_id, fav_type){
         data:{'fav_id':fav_id, 'fav_type':fav_type},
         async: true,
         beforeSend:function(xhr, settings){
-            xhr.setRequestHeader("X-CSRFToken", "{% csrf_token %}");
+            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
         },
         success: function(data) {
             if(data.status == 'fail'){

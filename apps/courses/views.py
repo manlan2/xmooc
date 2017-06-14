@@ -26,8 +26,6 @@ def courses(request):
         else:
             all_courses = all_courses.order_by('-students')
 
-    orgs_count = all_courses.count()
-
     try:
         page = request.GET.get('page', 1)
     except PageNotAnInteger:
@@ -45,33 +43,41 @@ def courses(request):
     })
 
 
-
 def course_detail(request, course_id):
     course = Course.objects.get(pk=course_id)
 
     course.click_nums += 1
     course.save()
 
+    tag = course.tag
+    if tag:
+        relate_courses = Course.objects.filter(tag=tag)[1:2]
+    else:
+        relate_courses = []
     all_lessons = Lesson.objects.filter(course_id=course_id)
     lesson_nums = all_lessons.count()
-    return render(request, 'course-detail.html', {'course':course,'lesson_nums':lesson_nums})
+    return render(request, 'course-detail.html', {
+        'course':course,
+        'lesson_nums':lesson_nums,
+        'relate_courses':relate_courses,
+    })
 
 
 def lesson(request, course_id):
 
     user_course = UserCourse()
-	
-	#我的课程添加
+
+    #我的课程添加
     course_ids = ''
-	
+
     for all_courses_ids in UserCourse.objects.filter(user_id=request.user.id):
         course_ids += str(all_courses_ids.course_id)
-	
+
     if course_id not in course_ids:
         user_course.user_id = request.user.id
         user_course.course_id = course_id
         user_course.save()
-	
+
     course = Course.objects.get(pk=course_id)
     all_lessons = Lesson.objects.filter(course_id=course_id)
     all_resources = CourseResource.objects.filter(course_id=course_id)

@@ -5,6 +5,8 @@ from organization.models import CityDict, CourseOrg, Teacher
 from courses.models import Course
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from forms import UserQstsForm
+from django.views.generic.base import View
 
 # Create your views here.
 
@@ -123,3 +125,9 @@ def detail(request, teacher_id):
     })
 
 
+class AddQstView(View):
+
+    def post(self, request):
+        userqst_form = UserQstsForm(request.POST)
+        if userqst_form.is_valid():
+            user_qst = userqst_form.save(commit=True)
