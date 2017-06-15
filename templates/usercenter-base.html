@@ -45,7 +45,7 @@
                                 </dl>
                                 <div class="btn">
 	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>
-	                                <a class="fr" href="/logout/">退出</a>
+	                                <a class="fr" href="{% url 'users:logout' %}">退出</a>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
             
     <div class="middle">
         <div class="wp">
-            <a href="index.html"><img class="fl" src="/static/img/logo2.png"/></a>
+            <a href="{% url 'users:index' %}"><img class="fl" src="/static/img/logo2.png"/></a>
             <h1>我的慕学网</h1>
         </div>
     </div>
@@ -74,8 +74,8 @@
 <section>
 	<div class="wp">
 		<ul  class="crumbs">
-			<li><a href="index.html">首页</a>></li>
-			<li><a href="/user/home/">个人中心</a>></li>
+			<li><a href="{% url 'users:index' %}">首页</a>></li>
+			<li><a href="{% url 'users:usercenter_info' request.user %}">个人中心</a>></li>
 			<li>个人信息</li>
 		</ul>
 	</div>

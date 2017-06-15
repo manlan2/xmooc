@@ -75,11 +75,11 @@
                             {% for comment in all_comments %}
                             <li class="post-row">
                                 <div class="media">
-                                    <span target="_blank"><img src='/static/media/image/2016/12/default_big_14.png' width='40' height='40' /></span>
+                                    <span><img src='{{ MEDIA_URL }}{{ comment.user.image }}' width='50' height='50' /></span>
                                 </div>
                                 <div class="bd">
                                     <div class="tit">
-                                        <span target="_blank">bobby</span>
+                                        <span target="_blank">{{ comment.user.username }}</span>
                                     </div>
                                     <p class="cnt">{{ comment.comments }}</p>
                                     <div class="footer clearfix">
@@ -109,11 +109,11 @@
                         <div class="box mb40">
                         <h4>讲师提示</h4>
                         <div class="teacher-info">
-                            <a href="/u/315464/courses?sort=publish" target="_blank">
+                            <a href="{% url 'organizations:detail' course.teacher.id %}">
                                 <img src='{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80' />
                             </a>
         <span class="tit">
-          <a href="/u/315464/courses?sort=publish" target="_blank">{{ course.teacher.name }}</a>
+          <a href="{% url 'organizations:detail' course.teacher.id %}">{{ course.teacher.name }}</a>
         </span>
                             <span class="job">{{ course.teacher.work_position }}</span>
                         </div>
@@ -203,11 +203,11 @@
         $.ajax({
             cache: false,
             type: "POST",
-            url:"/course/add_comment/",
-            data:{'course_id':10, 'comments':comments},
+            url:"{% url 'courses:add_comment' %}",
+            data:{'course_id':{{ course.id }}, 'comments':comments},
             async: true,
             beforeSend:function(xhr, settings){
-                xhr.setRequestHeader("X-CSRFToken", "5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy");
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
             success: function(data) {
                 if(data.status == 'fail'){

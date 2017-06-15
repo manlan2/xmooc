@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 from users.models import UserProfile, EmailVerifyRecord, Banner
 from operation.models import UserCourse, UserStore, UserMessage
 from courses.models import Course
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
+from django.core.urlresolvers import reverse
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.views.generic.base import View
@@ -44,6 +45,12 @@ class LoginView(View):
                 return render(request, 'login.html', {'msg': u'用户名或密码错误！'})
         else:
             return render(request, 'login.html', {'login_form':login_form})
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse('users:index'))
 
 
 class RegisterView(View):
