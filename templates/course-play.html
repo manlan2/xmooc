@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/aui.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/mooc.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/muke/course/common-less.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/video-js.css">
 {% endblock %}
 {% block content %}
 
@@ -17,40 +18,31 @@
 				<li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:courses' %}">公开课程</a>></li>
 				<li><a href="{% url 'courses:course_detail' course.id %}">课程详情</a>></li>
-                <li>章节信息</li>
+                <li>{{ video.name }}</li>
 			</ul>
 		</div>
 	</div>
 </section>
 
 
-    <div id="main">
-    <div class="course-infos">
-        <div class="w pr">
-            <div style="height: 15px" class="path">
-            </div>
-            <div class="hd">
-                <h2 class="l">{{ course.name }}</h2>
-            </div>
-            <div class="statics clearfix">
-                <div class="static-item ">
-                    <span class="meta-value"><strong>{{ course.get_degree_display }}</strong></span>
-                    <span class="meta">难度</span>
-                    <em></em>
-                </div>
-                <div class="static-item static-time">
-                    <span class="meta-value"><strong>{{ course.learn_times }}分钟</strong></span>
-                    <span class="meta">时长</span>
-                    <em></em>
-                </div>
-                <div class="static-item">
-                    <span class="meta-value"><strong>{{ course.students }}人</strong></span>
-                    <span class="meta">学习人数</span>
-                    <em></em>
-                </div>
-            </div>
-        </div>
+<div id="main">
+
+    <div style="width: 1200px; height: 575px;margin-left: 120px">
+        <video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered " controls preload="none" width="1100" height="575"
+              poster="{{ MEDIA_URL }}{{ video.poster }}"
+              data-setup="{}">
+            <source src="{{ video.url }}" type='video/mp4' />
+{#                <source src="http://视频地址格式2.webm" type='video/webm' />#}
+{#                <source src="http://视频地址格式3.ogv" type='video/ogg' />#}
+            <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+            <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+        </video>
     </div>
+
+
+
+
+
     <div class="course-info-main clearfix w has-progress">
 
         <div class="info-bar clearfix">
@@ -148,34 +140,6 @@
                                         </a>
                                     </li>
                                     
-                                    <li class="curr">
-                                        <a href="course-detail.html" target="_blank">
-                                            <img src="/static/media/courses/2016/12/python面向对象.jpg" alt="python面向对象">
-                                            <span class="name autowrap">python面向对象</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="curr">
-                                        <a href="course-detail.html" target="_blank">
-                                            <img src="/static/media/courses/2016/12/python文件处理.jpg" alt="python文件处理">
-                                            <span class="name autowrap">python文件处理</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="curr">
-                                        <a href="course-detail.html" target="_blank">
-                                            <img src="/static/media/courses/2016/11/mysql.jpg" alt="django入门">
-                                            <span class="name autowrap">django入门</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="curr">
-                                        <a href="course-detail.html" target="_blank">
-                                            <img src="/static/media/courses/2016/12/mysql.jpg" alt="xadmin进阶开发">
-                                            <span class="name autowrap">xadmin进阶开发</span>
-                                        </a>
-                                    </li>
-                                    
                                 </ul>
                             </div>
                             <div class="cp-tab-pannel js-comp-tab-pannel" data-pannel="plan">
@@ -195,9 +159,12 @@
         </div>
         <div class="clear"></div>
 
-    </div>
+        </div>
 
-</div>
+    </div>
 </div>
 {% endblock %}
-{% block js %}{% endblock %}
+{% block js %}
+    <script src="/static/js/video.min.js" type='text/javascript'></script>
+    <script src="/static/js/videojs-ie8.min.js.js" type='text/javascript'></script>
+{% endblock %}

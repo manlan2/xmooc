@@ -57,6 +57,8 @@ class Lesson(models.Model):
 class Video(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name=u'章节名')
     name = models.CharField(max_length=100, verbose_name=u'视频名')
+    poster = models.ImageField(verbose_name=u'封面', upload_to='course/poster/%Y/%m', max_length=200, null=True, blank=True)
+    url = models.URLField(max_length=300, verbose_name=u'视频地址', null=True, blank=True)
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
 
     class Meta:

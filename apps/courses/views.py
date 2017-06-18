@@ -108,6 +108,21 @@ def comment(request, course_id):
     })
 
 
+class VideoPlayView(View):
+    def get(self, request, video_id):
+        video = Video.objects.get(id=int(video_id))
+        course = video.lesson.course
+
+        all_lessons = Lesson.objects.filter(course_id=course.id)
+        all_resources = CourseResource.objects.filter(course_id=course.id)
+        return render(request, 'course-play.html', {
+            'course': course,
+            'all_lessons': all_lessons,
+            'all_resources': all_resources,
+            'video': video,
+        })
+
+
 class CommentView(View):
     def get(self, request, course_id):
         course = Course.objects.get(pk=int(course_id))
