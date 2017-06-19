@@ -45,7 +45,7 @@
 						</ul>
 						<div class="btns">
 							<div class="btn colectgroupbtn"  id="jsLeftBtn">
-                                  收藏
+                                  {% if is_store_course %}已收藏{% else %}收藏{% endif %}
                             </div>
                                 <div class="buy btn"><a style="color: white" href="{% url 'courses:lesson' course.id %}">开始学习</a></div>
 						</div>
@@ -81,7 +81,7 @@
                     </a>
 					<div class="btn  notlogin
 					     "data-favid="14" id="jsRightBtn">
-                         已收藏
+                         {% if is_store_org %}已收藏{% else %}收藏{% endif %}
                     </div>
 					<div class="clear">
 						<ul>
@@ -231,7 +231,7 @@ function add_fav(current_elem, fav_id, fav_type){
         success: function(data) {
             if(data.status == 'fail'){
                 if(data.msg == '用户未登录'){
-                    window.location.href="login.html";
+                    window.location.href="http://127.0.0.1:8000/login/";
                 }else{
                     alert(data.msg)
                 }
