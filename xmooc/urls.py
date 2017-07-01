@@ -26,3 +26,7 @@ urlpatterns = [
     url(r'', include('apps.operation.urls', namespace='operations')),
     url(r'', include('apps.organization.urls', namespace='organizations'))
 ]
+
+handler404 = 'users.views.page_not_found'
+handler500 = 'users.views.server_error'
+

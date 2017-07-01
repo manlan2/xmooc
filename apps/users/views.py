@@ -1,9 +1,6 @@
 # -*- coding:utf-8 -*-
 from django.shortcuts import render
 from django.shortcuts import HttpResponse, HttpResponseRedirect
-from users.models import UserProfile, EmailVerifyRecord, Banner
-from operation.models import UserCourse, UserStore, UserMessage
-from courses.models import Course
 from django.contrib.auth import authenticate, login, logout
 
 from django.core.urlresolvers import reverse
@@ -12,6 +9,11 @@ from django.db.models import Q
 from django.views.generic.base import View
 from forms import LoginForm, RegisterForm
 from django.contrib.auth.hashers import make_password
+
+from users.models import UserProfile, EmailVerifyRecord, Banner
+from operation.models import UserCourse, UserStore, UserMessage
+from courses.models import Course
+from organization.models import CourseOrg
 
 # Create your views here.
 
@@ -23,7 +25,7 @@ class CustomBackend(ModelBackend):
             if user.check_password(password):
                 return user
         except Exception as e:
-            return  None
+            return None
 
 
 class LoginView(View):
@@ -40,7 +42,7 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return render(request, 'index.html')
+                return HttpResponseRedirect(reverse('users:index'))
             else:
                 return render(request, 'login.html', {'msg': u'用户名或密码错误！'})
         else:
@@ -76,12 +78,14 @@ class RegisterView(View):
 
 def index(request):
     banner_list = Banner.objects.all()[:5]
-    course_big = Course.objects.order_by('click_nums')[:2]
-    course_small = Course.objects.order_by('click_nums')[2:6]
+    courses = Course.objects.filter(is_banner=False)[:6]
+    banner_courses = Course.objects.filter(is_banner=True)[:3]
+    orgs = CourseOrg.objects.all()[:15]
     return render(request, 'index.html', {
-        'banner_list':banner_list,
-        'course_big':course_big,
-        'course_small':course_small,
+        'banner_list': banner_list,
+        'courses': courses,
+        'banner_courses': banner_courses,
+        'orgs': orgs,
     })
 
 
@@ -109,14 +113,24 @@ def usercenter_mystore(request, user_id):
 def usercenter_mymessage(request, user_id):
     messages = UserMessage.objects.filter(user=user_id)
     return render(request, 'usercenter-mymessage.html', {'user_id':user_id})
-	
-	
+
+
 def userinfo_save(request, user_id):
     nick_name = request.POST.get('nick_name', '')
     birthday = request.POST.get('birthday', '')
     gender = request.POST.get('gender', '')
     address = request.POST.get('address', '')
     mobile = request.POST.get('mobile', '')
-	
-	
-	
+
+
+def page_not_found(request):
+    from django.shortcuts import render_to_response
+    response = render_to_response('404.html', {})
+    response.status_code = 404
+    return response
+
+def server_error(request):
+    from django.shortcuts import render_to_response
+    response = render_to_response('500.html', {})
+    response.status_code = 500
+    return response
