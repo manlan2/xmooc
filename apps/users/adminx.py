@@ -25,6 +25,7 @@ class EmailVerifyRecordAdmin(object):
     search_fields = ('code','email','type')
     #过滤字段
     list_filter = ('code','email','type','send_time')
+    model_icon = 'fa fa-user'
 
 
 class BannerAdmin(object):
