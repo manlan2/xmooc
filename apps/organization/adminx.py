@@ -11,7 +11,7 @@ class CityDictAdmin(object):
     list_filter = ('name', 'desc', 'add_time')
     list_export = ('xls', 'xml', 'json')
     list_editable = ['add_time', 'name']
-    model_icon = 'fa fa-building'
+    #model_icon = 'fa fa-building'
 
 
 class CourseOrgAdmin(object):
@@ -19,7 +19,7 @@ class CourseOrgAdmin(object):
     list_display_links = ('id', 'name', 'desc')
     search_fields = ('name', 'city')
     list_filter = ('name', 'click_nums', 'city', 'add_time')
-    model_icon = 'fa fa-university'
+    #model_icon = 'fa fa-university'
 
 
 class TeacherAdmin(object):

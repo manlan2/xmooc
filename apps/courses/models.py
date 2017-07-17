@@ -33,6 +33,7 @@ class Course(models.Model):
 
     def get_lesson_nums(self):
         return self.lesson_set.all().count()
+    get_lesson_nums.short_description = u'章节数'
 
     def get_learn_users(self):
         return self.usercourse_set.all()[:5]
@@ -53,6 +54,12 @@ class Lesson(models.Model):
     #获取章节视频
     def get_lesson_video(self):
         return self.video_set.all()
+
+class BannerCourse(Course):
+    class Meta:
+        verbose_name = u'轮播课程'
+        verbose_name_plural = verbose_name
+        proxy = True
 
 
 class Video(models.Model):
