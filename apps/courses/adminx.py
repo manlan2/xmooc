@@ -23,6 +23,7 @@ class CourseAdmin(object):
     readonly_fields = ('fav_nums', 'click_nums')
     exclude = ('fav_nums',)
     inlines = [LessonInline, CourseresourceInline]
+    #style_fields = {"detail":"ueditor"}
     #refresh_times = [3,5]
 
     def queryset(self):

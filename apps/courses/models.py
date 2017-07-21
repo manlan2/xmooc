@@ -2,6 +2,8 @@
 from django.db import models
 from datetime import datetime
 from organization.models import Teacher, CourseOrg
+
+from DjangoUeditor.models import UEditorField
 # Create your models here.
 
 
@@ -10,6 +12,7 @@ class Course(models.Model):
     name = models.CharField(max_length=100, verbose_name=u'课程名')
     desc = models.CharField(max_length=300, verbose_name=u'课程描述')
     detail = models.TextField(verbose_name=u'课程详情')
+    #detail = UEditorField(verbose_name=u'课程详情',width=600, height=300, imagePath="course/ueditor/", filePath="course/ueditor/",blank=True, default='')
     is_banner = models.BooleanField(default=False, verbose_name=u'是否轮播')
     teacher = models.ForeignKey(Teacher, verbose_name=u'讲师', null=True, blank=True)
     degree = models.CharField(choices=(('cj',u'初级'),('zj',u'中级'),('gj',u'高级')), max_length=5, verbose_name=u'难度')
