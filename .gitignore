@@ -1,4 +1,9 @@
 .idea/
 db.sqlite3
 *.pyc
+<<<<<<< HEAD
 
+=======
+xmooc/settings.py
+media/
+>>>>>>> ddb9cbe542144a3ca29ca0676e8cc2037ab75c10
