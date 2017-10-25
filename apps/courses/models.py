@@ -58,6 +58,7 @@ class Lesson(models.Model):
     def get_lesson_video(self):
         return self.video_set.all()
 
+
 class BannerCourse(Course):
     class Meta:
         verbose_name = u'轮播课程'

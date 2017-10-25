@@ -96,6 +96,7 @@ def lesson(request, course_id):
         'all_resources': all_resources,
     })
 
+
 def comment(request, course_id):
     course = Course.objects.get(pk=int(course_id))
     all_resources = CourseResource.objects.filter(course_id=course_id)

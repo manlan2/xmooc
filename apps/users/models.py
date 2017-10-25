@@ -37,6 +37,7 @@ class EmailVerifyRecord(models.Model):
     def __unicode__(self):
         return self.code
 
+
 class Banner(models.Model):
     title = models.CharField(max_length=50, verbose_name=u'标题')
     image = models.ImageField(upload_to=u'banner/%Y/%m', verbose_name=u'轮播图')
